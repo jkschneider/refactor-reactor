@@ -37,6 +37,8 @@ public class RefactorReactorTest {
         refactor.changeMethodName(a.findMethodCalls("reactor.core.publisher.Mono then(..)"),
                 "flatMap");
 
+        // With refactor.fix.print() we can emit the corrected source code in a style-preserving way. The output
+        // could be used directly to overwrite the original source.
         assertEquals("" +
                         "import reactor.core.publisher.*;\n" +
                         "public class A {\n" +
@@ -48,6 +50,7 @@ public class RefactorReactorTest {
                         "}",
                 refactor.fix().print());
 
+        // We can also emit a patch file for use with `git apply` and similar.
         System.out.println(refactor.diff());
     }
 
