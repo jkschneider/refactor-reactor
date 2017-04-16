@@ -17,7 +17,7 @@ public class Migrate306To307 extends AbstractMigrate {
 		refactor.changeMethodName(a.findMethodCalls("reactor.core.publisher.Mono flatMap(..)"),
 				"flatMapMany");
 
-		refactor.changeMethodName(a.findMethodCalls("reactor.core.publisher.Mono then(java.util.Function)"),
+		refactor.changeMethodName(a.findMethodCalls("reactor.core.publisher.Mono then(java.util.function.Function)"),
 				"flatMap");
 
 		return refactor.fix();

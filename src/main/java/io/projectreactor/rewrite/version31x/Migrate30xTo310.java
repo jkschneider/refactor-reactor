@@ -1,6 +1,7 @@
 package io.projectreactor.rewrite.version31x;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.netflix.rewrite.ast.Expression;
@@ -51,16 +52,12 @@ public class Migrate30xTo310 extends AbstractMigrate {
 
 		//FLUX switchOnError is a bit more tricky as it necessitates introducing a lambda
 		for (Tr.MethodInvocation mi : a.findMethodCalls("reactor.core.publisher.Flux switchOnError(..)")) {
-			int pos = -1;
-			int argSize = mi.argExpressions().size();
-			if (argSize == 2) {
-				pos = 1;
-			} else if (argSize == 1) {
-				pos = 0;
-			}
+			final List<Expression> args = mi.argExpressions();
+			int argSize = args.size();
+			int pos = argSize <=2 ? argSize - 1 : -1;
 
 			if (pos >= 0) {
-				String publisher = mi.argExpressions().get(pos).printTrimmed();
+				String publisher = args.get(pos).printTrimmed();
 				String lambda = "t -> " + publisher;
 				refactor.deleteArgument(mi, pos);
 				refactor.insertArgument(mi, pos, lambda);
