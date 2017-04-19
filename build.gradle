@@ -11,6 +11,7 @@ dependencies {
     compile "io.projectreactor:reactor-core:3.0.3.RELEASE"
     compile 'ch.qos.logback:logback-classic:1.1.8'
     testCompile 'junit:junit:latest.release'
+    testCompile 'org.assertj:assertj-core:3.5.2'
 }
 
 configurations.compile.resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
