@@ -1,0 +1,23 @@
+buildscript {
+    repositories { jcenter() }
+
+    dependencies {
+        classpath 'io.spring.gradle:rewrite-gradle:0.3.0'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring.rewrite'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'io.projectreactor:reactor-core:3.0.7.RELEASE'
+
+    // you must run ./gradlew pTML on the refactor-reactor root for
+    // refactor-reactor to be resolvable
+    compile 'io.projectreactor:refactor-reactor:latest.integration'
+}
