@@ -14,9 +14,11 @@ To test-drive:
 3. Run `./gradlew lintSource`. This will present the user with a report indicating that there are
 changes that need to be made:
 
-![lintSource](https://raw.githubusercontent.com/jkschneider/refactor-reactor/master/example/screenshots/lintSource.png)
+![lintSource](https://github.com/jkschneider/refactor-reactor/raw/master/example/screenshots/lintSource.png)
 
 4. Run `./gradlew fixSourceLint`. This will present a similar report as `lintSource`, but also make the changes
 to the underlying source files.
+
+![fixSourceLint](https://github.com/jkschneider/refactor-reactor/raw/master/example/screenshots/fixSourceLint.png)
 
 5. Run `git diff` to examine the changes that were made.
